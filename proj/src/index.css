@@ -1,0 +1,177 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Jost', system-ui, sans-serif;
+  background: #FBF7EE;
+  color: #24261F;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FBF7EE;
+}
+::-webkit-scrollbar-thumb {
+  background: #B8933D;
+  border-radius: 4px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input, textarea, select {
+  font-family: inherit;
+}
+
+/* Signature: vine growing in on scroll */
+@keyframes vineGrow {
+  from { stroke-dashoffset: 400; opacity: 0; }
+  to { stroke-dashoffset: 0; opacity: 1; }
+}
+
+.vine-draw {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: vineGrow 2.2s ease forwards;
+}
+
+/* Gentle rise-in for scroll reveals */
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.rise-in {
+  animation: riseIn 0.8s ease forwards;
+}
+
+/* Slow ambient sway for the hero botanical frame */
+@keyframes sway {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(1.2deg); }
+}
+
+.sway {
+  animation: sway 8s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vine-draw, .rise-in, .sway {
+    animation: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid #B8933D;
+  outline-offset: 3px;
+}
+
+/* Slow "Ken Burns" zoom to make background photos feel alive */
+@keyframes kenBurnsSlow {
+  0%   { transform: scale(1.06) translate(0, 0); }
+  50%  { transform: scale(1.16) translate(-1.5%, -1%); }
+  100% { transform: scale(1.06) translate(0, 0); }
+}
+
+.bg-alive {
+  animation: kenBurnsSlow 26s ease-in-out infinite;
+  will-change: transform;
+}
+
+.bg-alive-slower {
+  animation: kenBurnsSlow 34s ease-in-out infinite;
+  will-change: transform;
+}
+
+.gallery-tile img {
+  transition: transform 0.5s ease;
+}
+.gallery-tile:hover img {
+  transform: scale(1.08);
+}
+
+/* Kwanjula "scrapbook" gallery: a fun, hand-pasted polaroid collage */
+.scrapbook {
+  column-count: 1;
+  column-gap: 22px;
+}
+@media (min-width: 640px) {
+  .scrapbook { column-count: 2; }
+}
+@media (min-width: 980px) {
+  .scrapbook { column-count: 3; }
+}
+
+.polaroid {
+  break-inside: avoid;
+  display: block;
+  width: 100%;
+  margin: 0 0 28px;
+  background: #fffdf8;
+  padding: 12px;
+  border-radius: 2px;
+  box-shadow: 0 10px 22px rgba(43, 27, 18, 0.2), 0 2px 6px rgba(43, 27, 18, 0.12);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  position: relative;
+  cursor: pointer;
+  text-align: left;
+}
+.polaroid:hover,
+.polaroid:focus-visible {
+  transform: rotate(0deg) scale(1.04) !important;
+  box-shadow: 0 20px 36px rgba(43, 27, 18, 0.3), 0 4px 10px rgba(43, 27, 18, 0.16);
+  z-index: 5;
+}
+.polaroid img {
+  width: 100%;
+  display: block;
+  border-radius: 1px;
+}
+.polaroid .tape {
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-4deg);
+  width: 64px;
+  height: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+}
+.polaroid .cap {
+  font-style: italic;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 12px;
+  padding: 0 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-alive, .bg-alive-slower {
+    animation: none;
+  }
+  .gallery-tile img {
+    transition: none;
+  }
+  .polaroid {
+    transition: none;
+  }
+}
