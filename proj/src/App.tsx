@@ -266,8 +266,8 @@ const THEMES: Record<EventKey, ThemeConfig> = {
     gallery: KWANJULA_GALLERY,
     galleryVariant: 'scrapbook',
     galleryEyebrow: 'Straight from the day',
-    galleryTitle: 'Kwanjula Moments',
-    gallerySub: 'Family, laughter, and kanzus in the afternoon sun',
+    galleryTitle: 'Kukyaala Moments',
+    gallerySub: 'Gideon and his entourage meet Margie and her family for the first time',
   },
 }
 
